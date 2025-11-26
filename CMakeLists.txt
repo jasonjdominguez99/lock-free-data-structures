@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 project(
-  hello_world
+  lock_free
   VERSION 0.1.0
   LANGUAGES CXX)
 
@@ -98,14 +98,14 @@ set(RUN_HAVE_STD_REGEX
 FetchContent_MakeAvailable(googlebenchmark)
 
 # Main library
-add_library(hello_world STATIC src/hello_world.cpp)
+add_library(lock_free STATIC src/lock_free.cpp)
 target_include_directories(
-  hello_world PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  lock_free PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
                      $<INSTALL_INTERFACE:include>)
 
 # Main executable
-add_executable(hello_world_demo src/main.cpp)
-target_link_libraries(hello_world_demo PRIVATE hello_world)
+add_executable(lock_free_demo src/main.cpp)
+target_link_libraries(lock_free_demo PRIVATE lock_free)
 
 # Enable testing
 enable_testing()

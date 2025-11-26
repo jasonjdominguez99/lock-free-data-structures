@@ -3,12 +3,12 @@
 #include <string>
 
 /**
- * @brief Main namespace for the hello_world library
+ * @brief Main namespace for the lock_free library
  *
  * Contains greeting-related functionality demonstrating
  * modern C++23 patterns and best practices.
  */
-namespace hello_world {
+namespace lock_free {
 
 /**
  * @brief Get a greeting message
@@ -20,4 +20,4 @@ namespace hello_world {
  */
 std::string get_greeting();
 
-}  // namespace hello_world
+}  // namespace lock_free

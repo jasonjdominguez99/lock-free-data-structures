@@ -1,9 +1,8 @@
 # C++ Project Template
 
-[![CI](https://github.com/jasonjdominguez99/modern-cpp-project-template/actions/workflows/ci.yml/badge.svg)](https://github.com/jasonjdominguez99/modern-cpp-project-template)
-[![codecov](https://codecov.io/gh/jasonjdominguez99/modern-cpp-project-template/branch/main/graph/badge.svg)](https://codecov.io/gh/jasonjdominguez99/modern-cpp-project-template)
+[![CI](https://github.com/jasonjdominguez99/lock-free-data-structures/actions/workflows/ci.yml/badge.svg)](https://github.com/jasonjdominguez99/lock-free-data-structures)
+[![codecov](https://codecov.io/gh/jasonjdominguez99/lock-free-data-structures/branch/main/graph/badge.svg)](https://codecov.io/gh/jasonjdominguez99/lock-free-data-structures)
 
-> **TODO for template users:** Update the badge URLs above (lines 3-4) to point to your own repository. Replace `jasonjdominguez99/modern-cpp-project-template` with your GitHub username and repository name.
 
 A modern C++23 project template with best practices, testing, benchmarking, and CI/CD.
 
@@ -125,7 +124,7 @@ open docs/html/index.html
    - Create account at [codecov.io](https://codecov.io) and add your repository
    - Add `CODECOV_TOKEN` as a GitHub secret (Settings → Secrets and variables → Actions)
    - After first CI run with coverage, verify badges are working
-4. Find and replace `hello_world` with your project name
+4. Find and replace `lock_free` with your project name
 5. Update `CMakeLists.txt` project name and version
 6. Update this README with your project details
 7. Start coding!

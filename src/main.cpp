@@ -1,8 +1,8 @@
 #include <print>
 
-#include "hello_world.h"
+#include "lock_free.h"
 
 int main() {
-  std::println("{}", hello_world::get_greeting());
+  std::println("{}", lock_free::get_greeting());
   return 0;
 }

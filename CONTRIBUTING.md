@@ -62,7 +62,7 @@ cd build && ctest --output-on-failure
 ./scripts/benchmark.sh
 
 # Full benchmarks
-./build/benchmarks/hello_world_benchmark
+./build/benchmarks/lock_free_benchmark
 ```
 
 ## Code Coverage
@@ -108,7 +108,7 @@ Use Doxygen comments for all public APIs:
 std::string my_function(const std::string& name);
 ```
 
-See `include/hello_world.h` for examples.
+See `include/lock_free.h` for examples.
 
 ### Generating Documentation
 

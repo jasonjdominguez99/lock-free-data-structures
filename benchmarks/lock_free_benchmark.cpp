@@ -2,9 +2,9 @@
 
 #include <string>
 
-#include "hello_world.h"
+#include "lock_free.h"
 
-namespace hello_world {
+namespace lock_free {
 
 // Benchmark the get_greeting() function
 static void BM_GetGreeting(benchmark::State& state) {
@@ -47,4 +47,4 @@ BENCHMARK_F(StringFixture, FindSubstring)(benchmark::State& state) {
   }
 }
 
-}  // namespace hello_world
+}  // namespace lock_free

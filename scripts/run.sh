@@ -8,10 +8,10 @@ set -e
 BUILD_TYPE="${1:-release}"
 BUILD_DIR="build"
 
-if [ ! -f "$BUILD_DIR/hello_world_demo" ]; then
+if [ ! -f "$BUILD_DIR/lock_free_demo" ]; then
   echo "Demo not found. Building..."
   ./scripts/build.sh "$BUILD_TYPE"
 fi
 
 echo "Running demo..."
-"$BUILD_DIR/hello_world_demo"
+"$BUILD_DIR/lock_free_demo"
