@@ -1,0 +1,14 @@
+# codecov.yml - Configure Codecov coverage reporting
+coverage:
+  status:
+    project:
+      default:
+        informational: true   # Report coverage but don't fail checks
+                             # CI script enforces threshold instead
+
+ignore:
+  - "tests/**"              # Test files
+  - "benchmarks/**"         # Benchmark files
+  - "build/**"              # Build artifacts
+  - "src/main.cpp"          # Entry point (not testable)
+  - "**/_deps/**"           # External dependencies

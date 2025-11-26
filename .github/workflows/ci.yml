@@ -1,0 +1,106 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake ninja-build
+
+    - name: Install GCC 14 (for C++23 support)
+      if: matrix.compiler == 'gcc'
+      run: |
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+        sudo apt-get update
+        sudo apt-get install -y gcc-14 g++-14
+
+    - name: Configure CMake
+      run: |
+        if [ "${{ matrix.compiler }}" = "gcc" ]; then
+          export CC=gcc-14 CXX=g++-14
+        else
+          export CC=clang CXX=clang++
+        fi
+        cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -G Ninja
+
+    - name: Build
+      run: cmake --build build --config Release
+
+    - name: Run tests
+      run: cd build && ctest --output-on-failure -C Release
+
+    - name: Run benchmarks (quick)
+      run: ./build/benchmarks/hello_world_benchmark --benchmark_min_time=0.1s
+
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        brew install cmake ninja llvm
+
+    - name: Configure CMake with Homebrew LLVM
+      run: |
+        export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+        cmake -B build -S . \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_C_COMPILER=/opt/homebrew/opt/llvm/bin/clang \
+          -DCMAKE_CXX_COMPILER=/opt/homebrew/opt/llvm/bin/clang++ \
+          -G Ninja
+
+    - name: Build
+      run: cmake --build build --config Release
+
+    - name: Run tests
+      run: cd build && ctest --output-on-failure -C Release
+
+    - name: Run benchmarks (quick)
+      run: ./build/benchmarks/hello_world_benchmark --benchmark_min_time=0.1s
+
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake ninja-build lcov
+
+    - name: Install GCC 14 (for C++23 support)
+      run: |
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+        sudo apt-get update
+        sudo apt-get install -y gcc-14 g++-14
+
+    - name: Run coverage with threshold check
+      run: ./scripts/coverage-ci.sh 70
+      env:
+        CC: gcc-14
+        CXX: g++-14
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        files: ./coverage/coverage.info
+        fail_ci_if_error: false
+        verbose: true
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
