@@ -17,8 +17,8 @@ class Counter {
   Counter() = default;
   ~Counter() = default;
 
-  void increment() { ++count_; }
-  [[nodiscard]] int64_t get() const { return count_; }
+  void increment() noexcept { ++count_; }
+  [[nodiscard]] int64_t get() const noexcept { return count_; }
 
  private:
   int64_t count_ = 0;
@@ -38,11 +38,11 @@ class Counter {
   Counter(Counter&&) = delete;
   Counter& operator=(Counter&&) = delete;
 
-  void increment() {
+  void increment() noexcept {
     std::scoped_lock lock(mtx_);
     ++count_;
   }
-  [[nodiscard]] int64_t get() const {
+  [[nodiscard]] int64_t get() const noexcept {
     std::scoped_lock lock(mtx_);
     return count_;
   }
@@ -66,8 +66,8 @@ class Counter {
   Counter(Counter&&) = delete;
   Counter& operator=(Counter&&) = delete;
 
-  void increment() { count_.fetch_add(1, std::memory_order_relaxed); }
-  [[nodiscard]] int64_t get() const {
+  void increment() noexcept { count_.fetch_add(1, std::memory_order_relaxed); }
+  [[nodiscard]] int64_t get() const noexcept {
     return count_.load(std::memory_order_relaxed);
   }
 
