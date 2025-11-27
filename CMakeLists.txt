@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 project(
-  lock_free
+  lock_free_data_structures
   VERSION 0.1.0
   LANGUAGES CXX)
 
@@ -98,14 +98,21 @@ set(RUN_HAVE_STD_REGEX
 FetchContent_MakeAvailable(googlebenchmark)
 
 # Main library
-add_library(lock_free STATIC src/lock_free.cpp)
-target_include_directories(
-  lock_free PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-                     $<INSTALL_INTERFACE:include>)
+add_library(data_structures STATIC
+  src/utils.cpp
+)
+target_include_directories(data_structures PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
 
 # Main executable
-add_executable(lock_free_demo src/main.cpp)
-target_link_libraries(lock_free_demo PRIVATE lock_free)
+add_executable(lock_free_data_structures_demo
+  src/main.cpp
+)
+target_link_libraries(lock_free_data_structures_demo PRIVATE
+  data_structures
+)
 
 # Enable testing
 enable_testing()

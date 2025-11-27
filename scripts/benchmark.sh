@@ -24,10 +24,10 @@ fi
 
 BUILD_DIR="build"
 
-if [ ! -f "$BUILD_DIR/benchmarks/lock_free_benchmark" ]; then
+if [ ! -f "$BUILD_DIR/benchmarks/lock_free_data_structures_benchmark" ]; then
   echo "Benchmark not found. Building..."
   ./scripts/build.sh
 fi
 
 echo "Running benchmarks..."
-"$BUILD_DIR/benchmarks/lock_free_benchmark" "$@"
+"$BUILD_DIR/benchmarks/lock_free_data_structures_benchmark" "$@"

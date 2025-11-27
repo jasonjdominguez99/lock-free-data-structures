@@ -1,8 +1,8 @@
-#include "lock_free.h"
+#include "utils.h"
 
 #include <gtest/gtest.h>
 
-namespace lock_free {
+namespace utils {
 
 TEST(HelloWorldTest, GetGreeting) {
   std::string greeting = get_greeting();
@@ -10,4 +10,4 @@ TEST(HelloWorldTest, GetGreeting) {
   EXPECT_EQ(greeting, "Hello, World!");
 }
 
-}  // namespace lock_free
+}  // namespace utils

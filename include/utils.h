@@ -3,12 +3,12 @@
 #include <string>
 
 /**
- * @brief Main namespace for the lock_free library
+ * @brief utils namespace for the data_structures library
  *
  * Contains greeting-related functionality demonstrating
  * modern C++23 patterns and best practices.
  */
-namespace lock_free {
+namespace utils {
 
 /**
  * @brief Get a greeting message
@@ -20,4 +20,4 @@ namespace lock_free {
  */
 std::string get_greeting();
 
-}  // namespace lock_free
+}  // namespace utils

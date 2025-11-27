@@ -124,7 +124,7 @@ open docs/html/index.html
    - Create account at [codecov.io](https://codecov.io) and add your repository
    - Add `CODECOV_TOKEN` as a GitHub secret (Settings → Secrets and variables → Actions)
    - After first CI run with coverage, verify badges are working
-4. Find and replace `lock_free` with your project name
+4. Find and replace `hello_world` with your project name
 5. Update `CMakeLists.txt` project name and version
 6. Update this README with your project details
 7. Start coding!

@@ -44,7 +44,7 @@ jobs:
       run: cd build && ctest --output-on-failure -C Release
 
     - name: Run benchmarks (quick)
-      run: ./build/benchmarks/lock_free_benchmark --benchmark_min_time=0.1s
+      run: ./build/benchmarks/lock_free_data_structures_benchmark --benchmark_min_time=0.1s
 
   build-macos:
     runs-on: macos-latest
@@ -72,7 +72,7 @@ jobs:
       run: cd build && ctest --output-on-failure -C Release
 
     - name: Run benchmarks (quick)
-      run: ./build/benchmarks/lock_free_benchmark --benchmark_min_time=0.1s
+      run: ./build/benchmarks/lock_free_data_structures_benchmark --benchmark_min_time=0.1s
 
   coverage:
     runs-on: ubuntu-latest
