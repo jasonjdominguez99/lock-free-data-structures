@@ -33,6 +33,11 @@ class Counter {
   Counter() = default;
   ~Counter() = default;
 
+  Counter(const Counter&) = delete;
+  Counter& operator=(const Counter&) = delete;
+  Counter(Counter&&) = delete;
+  Counter& operator=(Counter&&) = delete;
+
   void increment() {
     std::scoped_lock lock(mtx_);
     ++count_;
@@ -55,6 +60,11 @@ class Counter {
  public:
   Counter() = default;
   ~Counter() = default;
+
+  Counter(const Counter&) = delete;
+  Counter& operator=(const Counter&) = delete;
+  Counter(Counter&&) = delete;
+  Counter& operator=(Counter&&) = delete;
 
   void increment() { count_.fetch_add(1, std::memory_order_relaxed); }
   [[nodiscard]] int64_t get() const {
