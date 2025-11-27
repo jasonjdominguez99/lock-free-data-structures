@@ -17,8 +17,8 @@ class Counter {
   Counter() = default;
   ~Counter() = default;
 
-  void increment() { ++count_; };
-  [[nodiscard]] int64_t get() const { return count_; };
+  void increment() { ++count_; }
+  [[nodiscard]] int64_t get() const { return count_; }
 
  private:
   int64_t count_ = 0;
@@ -36,11 +36,11 @@ class Counter {
   void increment() {
     std::scoped_lock lock(mtx_);
     ++count_;
-  };
+  }
   [[nodiscard]] int64_t get() const {
     std::scoped_lock lock(mtx_);
     return count_;
-  };
+  }
 
  private:
   mutable std::mutex mtx_;
@@ -56,10 +56,10 @@ class Counter {
   Counter() = default;
   ~Counter() = default;
 
-  void increment() { count_.fetch_add(1, std::memory_order_relaxed); };
+  void increment() { count_.fetch_add(1, std::memory_order_relaxed); }
   [[nodiscard]] int64_t get() const {
     return count_.load(std::memory_order_relaxed);
-  };
+  }
 
  private:
   std::atomic<int64_t> count_ = 0;
