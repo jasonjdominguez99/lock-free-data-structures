@@ -82,7 +82,7 @@ namespace distributed {
 
 class Counter {
  public:
-  explicit Counter(const size_t num_threads) : num_threads_(num_threads_) {
+  explicit Counter(const size_t num_threads) : num_threads_(num_threads) {
     assert(num_threads_ < MAX_THREADS);
   }
   ~Counter() = default;
