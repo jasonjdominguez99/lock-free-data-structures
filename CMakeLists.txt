@@ -9,6 +9,18 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# Compiler warning flags
+add_compile_options(-Wall -Wextra -Wpedantic)
+add_compile_options(-Wshadow -Wuninitialized -Wconversion)
+add_compile_options(-Werror) # Treat warnings as errors
+
+# Compiler-specific warnings
+if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wmost -Wthread-safety)
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+  add_compile_options(-Wduplicated-cond -Wlogical-op)
+endif()
+
 # Only disable Apple-specific flags if using GCC on macOS
 if(APPLE AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   message(STATUS "Using GCC on macOS - disabling Apple-specific flags")
@@ -98,21 +110,14 @@ set(RUN_HAVE_STD_REGEX
 FetchContent_MakeAvailable(googlebenchmark)
 
 # Main library
-add_library(data_structures STATIC
-  src/utils.cpp
-)
-target_include_directories(data_structures PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>
-)
+add_library(data_structures STATIC src/utils.cpp)
+target_include_directories(
+  data_structures PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+                         $<INSTALL_INTERFACE:include>)
 
 # Main executable
-add_executable(lock_free_data_structures_demo
-  src/main.cpp
-)
-target_link_libraries(lock_free_data_structures_demo PRIVATE
-  data_structures
-)
+add_executable(lock_free_data_structures_demo src/main.cpp)
+target_link_libraries(lock_free_data_structures_demo PRIVATE data_structures)
 
 # Enable testing
 enable_testing()
