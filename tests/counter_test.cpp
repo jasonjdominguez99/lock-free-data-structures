@@ -63,7 +63,7 @@ TEST(DistributedCounter, MultiThreadedIncrements) {
     std::vector<std::jthread> threads;
     threads.reserve(NUM_THREADS);
     for (size_t thread_id = 0; thread_id < NUM_THREADS; ++thread_id) {
-      threads.emplace_back([&counter, thread_id, NUM_INCREMENTS_PER_THREAD]() {
+      threads.emplace_back([&counter, thread_id]() {
         for (int64_t i = 0; i < NUM_INCREMENTS_PER_THREAD; ++i)
           counter.increment(thread_id);
       });
