@@ -20,7 +20,7 @@ BENCHMARK(BM_GetGreeting);
 static void BM_StringConstruction(benchmark::State& state) {
   const auto size = state.range(0);
   for (auto _ : state) {
-    std::string s(size, 'x');
+    std::string s(static_cast<size_t>(size), 'x');
     benchmark::DoNotOptimize(s.data());
   }
 }
