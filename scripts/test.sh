@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Run tests for the project
-# Usage: ./scripts/test.sh [debug|release|tsan|tsan-release]
+# Usage: ./scripts/test.sh [debug|debug-tsan|release]
 
 set -e
 
-# Default to Release build
-BUILD_TYPE="${1:-release}"
+# Default to debug build (with ASAN + UBSAN)
+BUILD_TYPE="${1:-debug}"
 BUILD_DIR="build"
 
 # Build if needed

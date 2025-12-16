@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Run the demo executable
-# Usage: ./scripts/run.sh [debug|release|tsan|tsan-release]
+# Usage: ./scripts/run.sh [debug|debug-tsan|release]
 
 set -e
 
-# Default to Release build
-BUILD_TYPE="${1:-release}"
+# Default to debug build
+BUILD_TYPE="${1:-debug}"
 BUILD_DIR="build"
 
 if [ ! -f "$BUILD_DIR/lock_free_data_structures_demo" ]; then

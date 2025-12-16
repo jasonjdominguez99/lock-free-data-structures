@@ -7,3 +7,5 @@ target_link_libraries(lock_free_data_structures_benchmark
 
 target_include_directories(lock_free_data_structures_benchmark
                            PRIVATE ${CMAKE_SOURCE_DIR}/include)
+target_compile_options(lock_free_data_structures_benchmark
+                       PRIVATE ${PROJECT_WARNING_FLAGS})
